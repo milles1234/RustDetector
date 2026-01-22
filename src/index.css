@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary Colors */
+  --color-industrial-navy: #004E89;
+  --color-alert-orange: #FF6B35;
+  --color-danger-red: #D62828;
+  --color-processing-amber: #F77F00;
+  
+  /* Secondary Colors */
+  --color-success-teal: #06A77D;
+  --color-caution-yellow: #FCBF49;
+  --color-neutral-slate: #6C757D;
+  --color-deep-charcoal: #2B2D42;
+  
+  /* Background & Surface Colors */
+  --color-page-bg: #F5F7FA;
+  --color-card-white: #FFFFFF;
+  --color-hover-state: #E9ECEF;
+  --color-border-gray: #DEE2E6;
+  
+  /* Spacing Scale Customization */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  --spacing-xxxl: 96px;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* Animations */
+  --animate-fade-in-up: fadeInUp 0.6s ease-out;
+  --animate-pulse-scale: pulse-scale 2s ease-in-out infinite;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-scale {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border-gray; /* Ensures box-sizing/borders play nice with Tailwind */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    @apply scroll-smooth text-[16px];
+  }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    @apply leading-relaxed text-deep-charcoal bg-page-bg overflow-x-hidden;
+  }
+
+  img {
+    @apply block max-w-full h-auto;
+  }
+
+  a {
+    @apply no-underline text-inherit;
+  }
+
+  ul, ol {
+    @apply list-none;
+  }
+
+  button {
+    @apply cursor-pointer border-none ;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold leading-tight text-deep-charcoal;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    @apply font-extrabold tracking-tight;
+  }
+
+  h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  h4 { font-size: clamp(1.25rem, 2.5vw, 1.5rem); }
+
+  p {
+    @apply text-base text-neutral-slate leading-[1.7];
+  }
+
+  :focus-visible {
+    @apply outline-3 outline-alert-orange outline-offset-2;
+  }
+}
+
+@layer components {
+  .hero {
+    background: linear-gradient(135deg, #004E89 0%, #003D6B 100%);
+    @apply text-white py-xxxl relative overflow-hidden;
+  }
+
+  .hero::before {
+    content: '';
+    @apply absolute inset-0 opacity-30;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+  }
+
+  .testimonial-quote::before {
+    content: '"';
+    @apply text-[3rem] text-alert-orange opacity-30 leading-none block mb-sm;
+  }
+
+  .trust-logo {
+    @apply h-[40px] opacity-60 grayscale transition-all duration-200 ease-in-out;
+  }
+
+  .trust-logo:hover {
+    @apply opacity-100 grayscale-0;
+  }
+}
+
+@layer utilities {
+  .text-shadow-hero {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Responsive adjustments using v4 @media syntax */
+@media (width < 768px) {
+  :root {
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+    --spacing-xxxl: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
