@@ -2,7 +2,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './index.css'
 import Landing from './pages/Landing'
-import Dashboard from './pages/Dashboard'
+import FileSelector from './pages/FileSelector'
+import Dashboard from './pages/UploadCard'
 import {
   SignIn,
   SignUp
@@ -17,7 +18,8 @@ function App() {
   <Route path="/" element={<Landing />} />
   <Route path="/sign-in/*" element={<SignIn />} />
   <Route path="/sign-up/*" element={<SignUp />} />
-  <Route path="/dashboard" element={<Dashboard />} />
+  <Route path="/dashboard/*" element={<Dashboard />} />
+  <Route path="/fileselector/*" element={<FileSelector />} />
 
 </Routes>
   )
